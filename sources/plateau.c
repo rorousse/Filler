@@ -14,19 +14,6 @@
 #include "filler.h"
 #include "../libft/libft.h"
 
-void	free_plateau(char **plateau)
-{
-	int		i;
-
-	i = 0;
-	while (plateau[i] != NULL)
-	{
-		free(plateau[i]);
-		i++;
-	}
-	free(plateau);
-}
-
 char	**init_plateau(int x, int y)
 {
 	char	**plateau;
@@ -56,7 +43,23 @@ char	**init_plateau(int x, int y)
 	return (plateau);
 }
 
-void	lecture_plateau(t_game partie)
+void 	init_size(t_game *partie)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	get_next_line(0, &line);
+	while (line[i] && (line[i] < '0' || line[i] > '9'))
+		i++;
+	partie->hauteur = ft_atoi(&(line[i]));
+	while (line[i] != ' ')
+		i++;
+	partie->largeur = ft_atoi(&(line[i]));
+	partie->plateau = init_plateau(partie->largeur, partie->hauteur);
+}
+
+void	lecture_plateau(t_game *partie)
 {
 	char	*line;
 	int		dec;
@@ -67,17 +70,20 @@ void	lecture_plateau(t_game partie)
 	j = 0;
 	i = 0;
 	dec = 0;
-	get_next_line(1, &line);
+	if (partie->plateau != NULL)
+		get_next_line(1, &line);
+	else
+		init_size(partie);
 	ret = get_next_line(1, &line);
 	while (line[dec] != ' ')
 		dec++;
 	dec++;
-	while (ret > 0)
+	while (i < partie->hauteur)
 	{
 		j = 0;
 		while (line[j + dec])
 		{
-			partie.plateau[i][j] = line[j + dec];
+			partie->plateau[i][j] = line[j + dec];
 			j++;
 		}
 		i++;

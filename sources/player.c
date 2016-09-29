@@ -1,45 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initiation.c                                       :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorousse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 14:25:23 by rorousse          #+#    #+#             */
-/*   Updated: 2016/09/27 14:25:24 by rorousse         ###   ########.fr       */
+/*   Created: 2016/09/29 10:59:06 by rorousse          #+#    #+#             */
+/*   Updated: 2016/09/29 10:59:07 by rorousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "filler.h"
+#include "../libft/libft.h"
 
-void	free_tab(char **tab)
+int		algo_naif(t_game *partie;)
 {
 	int		i;
+	int		y;
 
 	i = 0;
-	while (tab[i] != NULL)
+	y = 0;
+	while (i < partie->hauteur)
 	{
-		free(tab[i]);
-		i++;
+		y = 0;
+		while (y < partie->hauteur)
+		{
+			if (check_pose(*partie, i, y))
+			{
+				ft_putnbr(i);
+				ft_putchar(' ');
+				ft_putnbr(y);
+				ft_putchar('\n');
+				return (1);
+			}
+			y++;
+		}
 	}
-	free(tab);
-}
-
-void	init_game(t_game *partie)
-{
-	char	*line;
-
-	get_next_line(0, &line);
-	if (line[11] == '1')
-	{
-		partie->player = 'o';
-		partie->adv = 'x';
-	}
-	else
-	{
-		partie->player = 'x';
-		partie->adv = 'o';
-	}
-	partie->plateau = NULL;
+	i++;
+	return (0);
 }

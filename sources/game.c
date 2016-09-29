@@ -1,45 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initiation.c                                       :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorousse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 14:25:23 by rorousse          #+#    #+#             */
-/*   Updated: 2016/09/27 14:25:24 by rorousse         ###   ########.fr       */
+/*   Created: 2016/09/28 18:35:07 by rorousse          #+#    #+#             */
+/*   Updated: 2016/09/28 18:35:09 by rorousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "filler.h"
-
-void	free_tab(char **tab)
+void	play_game()
 {
-	int		i;
+	t_game	partie;
+	int		ret;
 
-	i = 0;
-	while (tab[i] != NULL)
+	init_game(&partie);
+	ret = 1;
+	while (ret == 1)
 	{
-		free(tab[i]);
-		i++;
+		lecture_plateau(&partie);
+		read_piece(&partie);
+		ret = algo_naif(&partie);
+		free_tab(partie.pice.forme);
 	}
-	free(tab);
-}
-
-void	init_game(t_game *partie)
-{
-	char	*line;
-
-	get_next_line(0, &line);
-	if (line[11] == '1')
-	{
-		partie->player = 'o';
-		partie->adv = 'x';
-	}
-	else
-	{
-		partie->player = 'x';
-		partie->adv = 'o';
-	}
-	partie->plateau = NULL;
+	free_tab(partie.plateau);
 }

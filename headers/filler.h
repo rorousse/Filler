@@ -13,13 +13,22 @@
 #ifndef FILLER_H
 # define FILLER_H
 
+struct	s_piece
+{
+	char	**forme;
+	int		hauteur;
+	int		largeur;
+};
+
+typedef struct s_piece t_piece;
 struct	s_game
 {
-	int		x;
-	int		y;
+	int		largeur;
+	int		hauteur;
 	char	player;
 	char	adv;
 	char	**plateau;
+	t_piece	piece;
 };
 
 typedef struct s_game t_game;
@@ -28,14 +37,28 @@ typedef struct s_game t_game;
 ** INIT_C
 */
 
-void	init_game(void);
+void	free_tab(char **tab);
+void	init_game(t_game *partie);
+
+/*
+**	PIECE_C
+*/
+
+void	read_piece(t_game *partie);
+int		check_pose(t_game partie, int x, int y);
 
 /*
 ** PLATEAU_C
 */
 
 char	**init_plateau(int x, int y);
-void	free_plateau(char **plateau);
-void	lecture_plateau(t_game partie);
+void	init_size(t_game *partie);
+void	lecture_plateau(t_game *partie);
+
+/*
+**	PLAYER_C
+*/
+
+int		algo_naif(t_game *partie);
 
 #endif

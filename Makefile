@@ -17,7 +17,8 @@ OBJ_PATH=./objs/
 SRC = 	main.c		\
 		init.c		\
 		plateau.c	\
-		
+		piece.c		\
+
 LIBS = libft/libft.a
 OBJNAME= $(SRC:.c=.o)
 OBJ = $(addprefix $(OBJ_PATH), $(OBJNAME))
