@@ -75,6 +75,7 @@ void	lecture_plateau(t_game *partie)
 	else
 		init_size(partie);
 	ret = get_next_line(1, &line);
+	write_test(line);
 	while (line[dec] != ' ')
 		dec++;
 	dec++;

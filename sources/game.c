@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "filler.h"
+
 void	play_game()
 {
 	t_game	partie;
@@ -17,12 +19,14 @@ void	play_game()
 
 	init_game(&partie);
 	ret = 1;
+
+	// init ok
 	while (ret == 1)
 	{
 		lecture_plateau(&partie);
 		read_piece(&partie);
 		ret = algo_naif(&partie);
-		free_tab(partie.pice.forme);
+		free_tab(partie.piece.forme);
 	}
 	free_tab(partie.plateau);
 }

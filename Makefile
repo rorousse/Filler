@@ -18,6 +18,8 @@ SRC = 	main.c		\
 		init.c		\
 		plateau.c	\
 		piece.c		\
+		game.c		\
+		player.c	\
 
 LIBS = libft/libft.a
 OBJNAME= $(SRC:.c=.o)

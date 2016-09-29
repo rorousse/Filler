@@ -1,5 +1,6 @@
-seed = 9886
-X: timedout
+seed = 3317
+X: error on input
+../rorousse.filler: Segfault at 0
 players/abanlin.filler won
 Score:
-141AGAINST0
+164AGAINST0

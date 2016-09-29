@@ -13,6 +13,20 @@
 #include "../libft/libft.h"
 #include "filler.h"
 
+// pour les test
+#include <fcntl.h>
+#include <unistd.h>
+
+
+void	write_test(char *str)
+{
+	int	fd;
+
+	fd = open("../test.txt", O_WRONLY);
+	ft_putendl_fd(str, fd);
+	close(fd);
+}
+
 void	free_tab(char **tab)
 {
 	int		i;
@@ -31,7 +45,7 @@ void	init_game(t_game *partie)
 	char	*line;
 
 	get_next_line(0, &line);
-	if (line[11] == '1')
+	if (line[10] == '1')
 	{
 		partie->player = 'o';
 		partie->adv = 'x';

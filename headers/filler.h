@@ -34,9 +34,15 @@ struct	s_game
 typedef struct s_game t_game;
 
 /*
+**	GAME_C
+*/
+
+void	play_game(void);
+/*
 ** INIT_C
 */
 
+void	write_test(char *str);
 void	free_tab(char **tab);
 void	init_game(t_game *partie);
 

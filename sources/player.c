@@ -13,7 +13,7 @@
 #include "filler.h"
 #include "../libft/libft.h"
 
-int		algo_naif(t_game *partie;)
+int		algo_naif(t_game *partie)
 {
 	int		i;
 	int		y;
