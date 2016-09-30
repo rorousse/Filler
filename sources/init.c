@@ -22,7 +22,7 @@ void	write_test(char *str)
 {
 	int	fd;
 
-	fd = open("../test.txt", O_WRONLY);
+	fd = open("../test.txt", O_WRONLY | O_APPEND | O_CREAT);
 	ft_putendl_fd(str, fd);
 	close(fd);
 }

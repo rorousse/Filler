@@ -27,6 +27,7 @@ int		algo_naif(t_game *partie)
 		{
 			if (check_pose(*partie, i, y))
 			{
+				write_test("ok");
 				ft_putnbr(i);
 				ft_putchar(' ');
 				ft_putnbr(y);
@@ -35,7 +36,7 @@ int		algo_naif(t_game *partie)
 			}
 			y++;
 		}
+		i++;
 	}
-	i++;
 	return (0);
 }

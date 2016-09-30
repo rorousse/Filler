@@ -14,34 +14,26 @@
 #include "filler.h"
 #include "../libft/libft.h"
 
-
-static void	init_piece(t_piece *piece)
-{
-	int		i;
-
-	i = 0;
-	piece->forme = (char**)malloc(sizeof(char*) * (piece->hauteur + 1));
-	while (i < piece->hauteur)
-	{
-		piece->forme[i] = (char*)malloc((piece->largeur + 1) * sizeof(char));
-		i++;
-	}
-	piece->forme[i] = NULL;
-}
-
 void	read_piece(t_game *partie)
 {
 	char	*line;
 	int		i;
 
 	i = 6;
-	get_next_line(1, &line);
+	get_next_line(0, &line);
 	(partie->piece).hauteur = ft_atoi(&(line[i]));
 	while (line[i] >= '0' && line[i] <= '9')
 		i++;
 	i++;
 	(partie->piece).largeur = ft_atoi(&(line[i]));
-	init_piece(&(partie->piece));
+	(partie->piece).forme = (char**)malloc(sizeof(char*) * ((partie->piece).hauteur + 1));
+	i = 0;
+	while (i < (partie->piece).hauteur)
+	{
+		get_next_line(0, &((partie->piece).forme[i]));
+		i++;
+	}
+	(partie->piece).forme[i] = NULL;
 }
 
 int		check_pose(t_game partie, int y, int x)
