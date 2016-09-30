@@ -52,15 +52,20 @@ int		check_pose(t_game partie, int y, int x)
 		{
 			if (partie.piece.forme[i][j] != '.')
 			{
-				if (x + i >= partie.hauteur || y + j >= partie.largeur)
+				if (x + i >= partie.hauteur || y + j >= partie.largeur || (partie.piece.forme[i][j] != '.' && (partie.plateau[y + i][x + j] == partie.adv || partie.plateau[y + i][x + j] == partie.adv - 32)))
 					return (0);
-				if (partie.plateau[x + i][y + j] == partie.player || partie.plateau[x + i][y + j] == partie.player - 32)
+				if (partie.plateau[y + i][x + j] == partie.player || partie.plateau[y + i][x + j] == partie.player - 32)
+				{
 					count++;
+				}
 			}
+			j++;
 		}
 		i++;
 	}
 	if (count == 1)
+	{
 		return (1);
+	}
 	return (0);
 }
