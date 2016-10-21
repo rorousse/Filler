@@ -25,7 +25,9 @@ void	play_game()
 		lecture_plateau(&partie);
 		read_piece(&partie);
 		write_plateau(partie.piece.forme);
+		write_test("in");
 		ret = algo_naif(&partie);
+		write_test("out");
 		free_tab(partie.piece.forme);
 	}
 	free_tab(partie.plateau);
