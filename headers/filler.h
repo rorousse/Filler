@@ -13,6 +13,14 @@
 #ifndef FILLER_H
 # define FILLER_H
 
+struct s_coos
+{
+	int x;
+	int y;
+};
+
+typedef struct s_coos t_coos;
+
 struct	s_piece
 {
 	char	**forme;
@@ -21,12 +29,14 @@ struct	s_piece
 };
 
 typedef struct s_piece t_piece;
+
 struct	s_game
 {
 	int		largeur;
 	int		hauteur;
 	char	player;
 	char	adv;
+	t_coos	last_adv;
 	char	**plateau;
 	t_piece	piece;
 };

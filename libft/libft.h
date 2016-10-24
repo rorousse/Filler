@@ -118,5 +118,6 @@ extern void			ft_insert_double_str(char ***str, char *new);
 extern void			ft_replace_char(char *str, char c, char new);
 extern void			ft_delete_double_str(char **str, int pos);
 extern int			ft_search_char(char *str, char c);
+extern unsigned int	ft_abs(int n);
 
 #endif
