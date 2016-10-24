@@ -45,6 +45,7 @@ void	init_game(t_game *partie)
 	char	*line;
 
 	get_next_line(0, &line);
+	free(line);
 	if (line[10] == '1')
 	{
 		partie->player = 'o';

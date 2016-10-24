@@ -76,6 +76,7 @@ void 	init_size(t_game *partie)
 		i++;
 	partie->largeur = ft_atoi(&(line[i]));
 	partie->plateau = init_plateau(partie->largeur, partie->hauteur);
+	free(line);
 }
 
 void	lecture_plateau(t_game *partie)
@@ -89,11 +90,18 @@ void	lecture_plateau(t_game *partie)
 	j = 0;
 	i = 0;
 	dec = 0;
+	write_test("start");
 	if (partie->plateau != NULL)
-		get_next_line(0, &line);
+	{
+		ret = get_next_line(0, &line);
+		free(line);
+	}
 	else
 		init_size(partie);
+	write_test("ok");
 	ret = get_next_line(0, &line);
+	if (line != NULL)
+		free(line);
 	ret = get_next_line(0, &line);
 	while (line[dec] != ' ')
 		dec++;
@@ -108,7 +116,13 @@ void	lecture_plateau(t_game *partie)
 		}
 		i++;
 		if (i != partie->hauteur - 1)
+		{
+			if (line != NULL)
+				free(line);
 			ret = get_next_line(0, &line);
+		}
 	}
+	if (line != NULL)
+		free(line);
 }
 

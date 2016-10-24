@@ -1,6 +1,5 @@
-seed = 4795
+seed = 7072
 O: error on input
-../rorousse.filler: Segfault at 69
-players/abanlin.filler won
+players/hcao.filler won
 Score:
-69AGAINST97
+15AGAINST150

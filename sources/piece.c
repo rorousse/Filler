@@ -21,6 +21,7 @@ void	read_piece(t_game *partie)
 
 	i = 6;
 	get_next_line(0, &line);
+	free(line);
 	(partie->piece).hauteur = ft_atoi(&(line[i]));
 	while (line[i] >= '0' && line[i] <= '9')
 		i++;
@@ -52,7 +53,7 @@ int		check_pose(t_game partie, int y, int x)
 		{
 			if (partie.piece.forme[i][j] != '.')
 			{
-				if (x + j >= partie.hauteur || y + i >= partie.largeur)
+				if (y + i >= partie.hauteur || x + j >= partie.largeur)
 				{
 					return (0);
 				}
