@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-void	play_game()
+void	play_game(void)
 {
 	t_game	partie;
 	int		ret;

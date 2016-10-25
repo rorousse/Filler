@@ -16,7 +16,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-int main()
+int	main(void)
 {
 	play_game();
 	return (0);
