@@ -13,10 +13,10 @@
 #include "../libft/libft.h"
 #include "filler.h"
 
-// pour les test
+/*
+ Testing purposes
 #include <fcntl.h>
 #include <unistd.h>
-
 
 void	write_test(char *str)
 {
@@ -26,6 +26,7 @@ void	write_test(char *str)
 	ft_putendl_fd(str, fd);
 	close(fd);
 }
+*/
 
 void	free_tab(char **tab)
 {
