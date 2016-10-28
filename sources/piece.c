@@ -27,7 +27,8 @@ void	read_piece(t_game *partie)
 		i++;
 	i++;
 	(partie->piece).largeur = ft_atoi(&(line[i]));
-	(partie->piece).forme = (char**)malloc(sizeof(char*) * ((partie->piece).hauteur + 1));
+	(partie->piece).forme = (char**)malloc(sizeof(char*)
+	* ((partie->piece).hauteur + 1));
 	i = 0;
 	while (i < (partie->piece).hauteur)
 	{
@@ -43,39 +44,25 @@ int		check_pose(t_game partie, int y, int x)
 	int	j;
 	int	count;
 
-	i = 0;
-	j = 0;
+	i = -1;
 	count = 0;
-	while (i < partie.piece.hauteur)
+	while (++i < partie.piece.hauteur)
 	{
 		j = 0;
 		while (j < partie.piece.largeur)
 		{
 			if (partie.piece.forme[i][j] != '.')
 			{
-				if (y + i >= partie.hauteur || x + j >= partie.largeur)
-				{
+				if (y + i >= partie.hauteur || x + j >= partie.largeur
+				|| partie.plateau[y + i][x + j] == partie.adv
+				|| partie.plateau[y + i][x + j] == partie.adv - 32)
 					return (0);
-				}
-				write_test("on");
-				if (partie.plateau[y + i][x + j] == partie.adv || partie.plateau[y + i][x + j] == partie.adv - 32)
-				{
-					write_test("off");
-					return (0);
-				}
-				write_test("off");
-				if (partie.plateau[y + i][x + j] == partie.player || partie.plateau[y + i][x + j] == partie.player - 32)
-				{
+				if (partie.plateau[y + i][x + j] == partie.player
+				|| partie.plateau[y + i][x + j] == partie.player - 32)
 					count++;
-				}
 			}
 			j++;
 		}
-		i++;
 	}
-	if (count == 1)
-	{
-		return (1);
-	}
-	return (0);
+	return (count == 1) ? 1 : 0;
 }

@@ -14,25 +14,6 @@
 #include "filler.h"
 #include "../libft/libft.h"
 
-// testing pruposes
-#include <fcntl.h>
-
-
-void	write_plateau(char **plateau)
-{
-	int fd;
-	int	i;
-
-	i = 0;
-	fd = open("plateau.txt", O_WRONLY | O_APPEND | O_CREAT);
-	while (plateau[i] != NULL)
-	{
-		ft_putendl_fd(plateau[i], fd);
-		i++;		
-	}
-	close(fd);
-}
-
 char	**init_plateau(int x, int y)
 {
 	char	**plateau;
@@ -62,7 +43,7 @@ char	**init_plateau(int x, int y)
 	return (plateau);
 }
 
-void 	init_size(t_game *partie)
+void	init_size(t_game *partie)
 {
 	int		i;
 	char	*line;
@@ -90,7 +71,6 @@ void	lecture_plateau(t_game *partie)
 	j = 0;
 	i = 0;
 	dec = 0;
-	write_test("start");
 	if (partie->plateau != NULL)
 	{
 		ret = get_next_line(0, &line);
@@ -98,7 +78,6 @@ void	lecture_plateau(t_game *partie)
 	}
 	else
 		init_size(partie);
-	write_test("ok");
 	ret = get_next_line(0, &line);
 	if (line != NULL)
 		free(line);
@@ -125,4 +104,3 @@ void	lecture_plateau(t_game *partie)
 	if (line != NULL)
 		free(line);
 }
-

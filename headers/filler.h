@@ -53,6 +53,7 @@ void	play_game(void);
 */
 
 void	write_test(char *str);
+void	write_plateau(char **plateau);
 void	free_tab(char **tab);
 void	init_game(t_game *partie);
 
@@ -67,7 +68,6 @@ int		check_pose(t_game partie, int x, int y);
 ** PLATEAU_C
 */
 
-void	write_plateau(char **plateau);
 char	**init_plateau(int x, int y);
 void	init_size(t_game *partie);
 void	lecture_plateau(t_game *partie);

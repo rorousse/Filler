@@ -23,7 +23,6 @@ void	play_game(void)
 	{
 		lecture_plateau(&partie);
 		read_piece(&partie);
-		write_plateau(partie.piece.forme);
 		ret = algo_naif(&partie);
 		free_tab(partie.piece.forme);
 	}

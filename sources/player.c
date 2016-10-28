@@ -59,12 +59,14 @@ int			algo_naif(t_game *partie)
 		{
 			if (check_pose(*partie, i, j))
 			{
-				if (((ft_abs(i - partie->last_adv.y) + ft_abs(j - partie->last_adv.x)) / 2) < dist_rel)
+				if (((ft_abs(i - partie->last_adv.y)
+				+ ft_abs(j - partie->last_adv.x)) / 2) < dist_rel)
 				{
-					dist_rel = (ft_abs(i - partie->last_adv.y) + ft_abs(j - partie->last_adv.x)) / 2;
+					dist_rel = (ft_abs(i - partie->last_adv.y)
+					+ ft_abs(j - partie->last_adv.x)) / 2;
 					curr_play.x = j;
 					curr_play.y = i;
-				}	
+				}
 			}
 			j++;
 		}

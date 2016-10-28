@@ -26,6 +26,21 @@ void	write_test(char *str)
 	ft_putendl_fd(str, fd);
 	close(fd);
 }
+
+void	write_plateau(char **plateau)
+{
+	int fd;
+	int	i;
+
+	i = 0;
+	fd = open("plateau.txt", O_WRONLY | O_APPEND | O_CREAT);
+	while (plateau[i] != NULL)
+	{
+		ft_putendl_fd(plateau[i], fd);
+		i++;
+	}
+	close(fd);
+}
 */
 
 void	free_tab(char **tab)
