@@ -15,8 +15,9 @@
 
 struct s_coos
 {
-	int x;
-	int y;
+	int 			x;
+	int 			y;
+	unsigned int	rel_dist;
 };
 
 typedef struct s_coos t_coos;
@@ -48,12 +49,11 @@ typedef struct s_game t_game;
 */
 
 void	play_game(void);
+
 /*
 ** INIT_C
 */
 
-void	write_test(char *str);
-void	write_plateau(char **plateau);
 void	free_tab(char **tab);
 void	init_game(t_game *partie);
 
@@ -77,5 +77,12 @@ void	read_game(t_game *partie);
 */
 
 int		algo_naif(t_game *partie);
+
+/*
+**	TESTING_C
+*/
+
+void	write_test(char *str);
+void	write_plateau(char **plateau);
 
 #endif

@@ -21,6 +21,21 @@ static void	init_algo(t_coos *curr_play, int *i, int *j)
 	curr_play->y = -1;
 }
 
+static void	calc_rel_dist(t_game *partie, t_coos *curr_play, int i, int j)
+{
+	if (check_pose(*partie, i, j))
+	{
+		if (((ft_abs(i - partie->last_adv.y)
+		+ ft_abs(j - partie->last_adv.x)) / 2) < curr_play->rel_dist)
+		{
+			curr_play->rel_dist = (ft_abs(i - partie->last_adv.y)
+			+ ft_abs(j - partie->last_adv.x)) / 2;
+			curr_play->x = j;
+			curr_play->y = i;
+		}
+	}
+}
+
 static int	print_answer(t_coos curr_play)
 {
 	if (curr_play.x != -1)
@@ -65,27 +80,16 @@ int			algo_naif(t_game *partie)
 	int				i;
 	int				j;
 	t_coos			curr_play;
-	unsigned int	dist_rel;
 
 	init_algo(&curr_play, &i, &j);
-	dist_rel = partie->h + partie->l;
+	curr_play.rel_dist = partie->h + partie->l;
 	find_last_play(partie);
 	while (i < partie->h)
 	{
 		j = 0;
 		while (j < partie->h)
 		{
-			if (check_pose(*partie, i, j))
-			{
-				if (((ft_abs(i - partie->last_adv.y)
-				+ ft_abs(j - partie->last_adv.x)) / 2) < dist_rel)
-				{
-					dist_rel = (ft_abs(i - partie->last_adv.y)
-					+ ft_abs(j - partie->last_adv.x)) / 2;
-					curr_play.x = j;
-					curr_play.y = i;
-				}
-			}
+			calc_rel_dist(partie, &curr_play, i, j);
 			j++;
 		}
 		i++;

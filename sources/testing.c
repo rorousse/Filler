@@ -1,46 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initiation.c                                       :+:      :+:    :+:   */
+/*   testing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorousse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 14:25:23 by rorousse          #+#    #+#             */
-/*   Updated: 2016/09/27 14:25:24 by rorousse         ###   ########.fr       */
+/*   Created: 2016/10/30 16:50:38 by rorousse          #+#    #+#             */
+/*   Updated: 2016/10/30 16:50:40 by rorousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "filler.h"
+#include <fcntl.h>
+#include <unistd.h>
 
-void	free_tab(char **tab)
+void	write_test(char *str)
 {
-	int		i;
+	int	fd;
 
-	i = 0;
-	while (tab[i] != NULL)
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
+	fd = open("../test.txt", O_WRONLY | O_APPEND | O_CREAT);
+	ft_putendl_fd(str, fd);
+	close(fd);
 }
 
-void	init_game(t_game *partie)
+void	write_plateau(char **plateau)
 {
-	char	*line;
+	int fd;
+	int	i;
 
-	get_next_line(0, &line);
-	free(line);
-	if (line[10] == '1')
+	i = 0;
+	fd = open("plateau.txt", O_WRONLY | O_APPEND | O_CREAT);
+	while (plateau[i] != NULL)
 	{
-		partie->player = 'o';
-		partie->adv = 'x';
+		ft_putendl_fd(plateau[i], fd);
+		i++;
 	}
-	else
-	{
-		partie->player = 'x';
-		partie->adv = 'o';
-	}
-	partie->plateau = NULL;
+	close(fd);
 }
