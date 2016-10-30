@@ -24,7 +24,7 @@ typedef struct s_coos t_coos;
 
 struct	s_piece
 {
-	char	**forme;
+	char	**shape;
 	int		h;
 	int		l;
 };
@@ -38,11 +38,19 @@ struct	s_game
 	char	player;
 	char	adv;
 	t_coos	last_adv;
-	char	**plateau;
+	char	**board;
 	t_piece	piece;
 };
 
 typedef struct s_game t_game;
+
+/*
+** BOARD_C
+*/
+
+char	**init_board(int x, int y);
+void	init_size(t_game *match);
+void	read_game(t_game *match);
 
 /*
 **	GAME_C
@@ -55,28 +63,20 @@ void	play_game(void);
 */
 
 void	free_tab(char **tab);
-void	init_game(t_game *partie);
+void	init_game(t_game *match);
 
 /*
 **	PIECE_C
 */
 
-void	read_piece(t_game *partie);
-int		check_pose(t_game partie, int x, int y);
-
-/*
-** PLATEAU_C
-*/
-
-char	**init_plateau(int x, int y);
-void	init_size(t_game *partie);
-void	read_game(t_game *partie);
+void	read_piece(t_game *match);
+int		check_pose(t_game match, int x, int y);
 
 /*
 **	PLAYER_C
 */
 
-int		algo_naif(t_game *partie);
+int		algo_naif(t_game *match);
 
 /*
 **	TESTING_C

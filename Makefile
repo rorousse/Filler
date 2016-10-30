@@ -16,7 +16,7 @@ SRC_PATH=./sources/
 OBJ_PATH=./objs/
 SRC = 	main.c		\
 		init.c		\
-		plateau.c	\
+		board.c		\
 		piece.c		\
 		game.c		\
 		player.c	\

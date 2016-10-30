@@ -26,7 +26,7 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
-void	init_game(t_game *partie)
+void	init_game(t_game *match)
 {
 	char	*line;
 
@@ -34,13 +34,13 @@ void	init_game(t_game *partie)
 	free(line);
 	if (line[10] == '1')
 	{
-		partie->player = 'o';
-		partie->adv = 'x';
+		match->player = 'o';
+		match->adv = 'x';
 	}
 	else
 	{
-		partie->player = 'x';
-		partie->adv = 'o';
+		match->player = 'x';
+		match->adv = 'o';
 	}
-	partie->plateau = NULL;
+	match->board = NULL;
 }

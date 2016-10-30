@@ -22,16 +22,16 @@ void	write_test(char *str)
 	close(fd);
 }
 
-void	write_plateau(char **plateau)
+void	write_board(char **board)
 {
 	int fd;
 	int	i;
 
 	i = 0;
-	fd = open("plateau.txt", O_WRONLY | O_APPEND | O_CREAT);
-	while (plateau[i] != NULL)
+	fd = open("board.txt", O_WRONLY | O_APPEND | O_CREAT);
+	while (board[i] != NULL)
 	{
-		ft_putendl_fd(plateau[i], fd);
+		ft_putendl_fd(board[i], fd);
 		i++;
 	}
 	close(fd);

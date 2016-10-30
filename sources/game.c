@@ -14,17 +14,17 @@
 
 void	play_game(void)
 {
-	t_game	partie;
+	t_game	match;
 	int		ret;
 
-	init_game(&partie);
+	init_game(&match);
 	ret = 1;
 	while (ret == 1)
 	{
-		read_game(&partie);
-		read_piece(&partie);
-		ret = algo_naif(&partie);
-		free_tab(partie.piece.forme);
+		read_game(&match);
+		read_piece(&match);
+		ret = algo_naif(&match);
+		free_tab(match.piece.shape);
 	}
-	free_tab(partie.plateau);
+	free_tab(match.board);
 }

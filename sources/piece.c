@@ -14,7 +14,7 @@
 #include "filler.h"
 #include "../libft/libft.h"
 
-void	read_piece(t_game *partie)
+void	read_piece(t_game *match)
 {
 	char	*line;
 	int		i;
@@ -22,23 +22,23 @@ void	read_piece(t_game *partie)
 	i = 6;
 	get_next_line(0, &line);
 	free(line);
-	(partie->piece).h = ft_atoi(&(line[i]));
+	(match->piece).h = ft_atoi(&(line[i]));
 	while (line[i] >= '0' && line[i] <= '9')
 		i++;
 	i++;
-	(partie->piece).l = ft_atoi(&(line[i]));
-	(partie->piece).forme = (char**)malloc(sizeof(char*)
-	* ((partie->piece).h + 1));
+	(match->piece).l = ft_atoi(&(line[i]));
+	(match->piece).shape = (char**)malloc(sizeof(char*)
+	* ((match->piece).h + 1));
 	i = 0;
-	while (i < (partie->piece).h)
+	while (i < (match->piece).h)
 	{
-		get_next_line(0, &((partie->piece).forme[i]));
+		get_next_line(0, &((match->piece).shape[i]));
 		i++;
 	}
-	(partie->piece).forme[i] = NULL;
+	(match->piece).shape[i] = NULL;
 }
 
-int		check_pose(t_game partie, int y, int x)
+int		check_pose(t_game match, int y, int x)
 {
 	int	i;
 	int	j;
@@ -46,19 +46,19 @@ int		check_pose(t_game partie, int y, int x)
 
 	i = -1;
 	count = 0;
-	while (++i < partie.piece.h)
+	while (++i < match.piece.h)
 	{
 		j = 0;
-		while (j < partie.piece.l)
+		while (j < match.piece.l)
 		{
-			if (partie.piece.forme[i][j] != '.')
+			if (match.piece.shape[i][j] != '.')
 			{
-				if (y + i >= partie.h || x + j >= partie.l
-				|| partie.plateau[y + i][x + j] == partie.adv
-				|| partie.plateau[y + i][x + j] == partie.adv - 32)
+				if (y + i >= match.h || x + j >= match.l
+				|| match.board[y + i][x + j] == match.adv
+				|| match.board[y + i][x + j] == match.adv - 32)
 					return (0);
-				if (partie.plateau[y + i][x + j] == partie.player
-				|| partie.plateau[y + i][x + j] == partie.player - 32)
+				if (match.board[y + i][x + j] == match.player
+				|| match.board[y + i][x + j] == match.player - 32)
 					count++;
 			}
 			j++;

@@ -21,15 +21,15 @@ static void	init_algo(t_coos *curr_play, int *i, int *j)
 	curr_play->y = -1;
 }
 
-static void	calc_rel_dist(t_game *partie, t_coos *curr_play, int i, int j)
+static void	calc_rel_dist(t_game *match, t_coos *curr_play, int i, int j)
 {
-	if (check_pose(*partie, i, j))
+	if (check_pose(*match, i, j))
 	{
-		if (((ft_abs(i - partie->last_adv.y)
-		+ ft_abs(j - partie->last_adv.x)) / 2) < curr_play->rel_dist)
+		if (((ft_abs(i - match->last_adv.y)
+		+ ft_abs(j - match->last_adv.x)) / 2) < curr_play->rel_dist)
 		{
-			curr_play->rel_dist = (ft_abs(i - partie->last_adv.y)
-			+ ft_abs(j - partie->last_adv.x)) / 2;
+			curr_play->rel_dist = (ft_abs(i - match->last_adv.y)
+			+ ft_abs(j - match->last_adv.x)) / 2;
 			curr_play->x = j;
 			curr_play->y = i;
 		}
@@ -49,24 +49,24 @@ static int	print_answer(t_coos curr_play)
 	return (0);
 }
 
-static void	find_last_play(t_game *partie)
+static void	find_last_play(t_game *match)
 {
 	int			i;
 	int			j;
 	static int	b = 0;
 
 	i = 0;
-	while (i < partie->h)
+	while (i < match->h)
 	{
 		j = 0;
-		while (j < partie->l)
+		while (j < match->l)
 		{
-			if (partie->plateau[i][j] == partie->adv
-			|| (b == 0 && partie->plateau[i][j] == partie->adv - 32))
+			if (match->board[i][j] == match->adv
+			|| (b == 0 && match->board[i][j] == match->adv - 32))
 			{
 				b = 1;
-				partie->last_adv.x = j;
-				partie->last_adv.y = i;
+				match->last_adv.x = j;
+				match->last_adv.y = i;
 				return ;
 			}
 			j++;
@@ -75,21 +75,21 @@ static void	find_last_play(t_game *partie)
 	}
 }
 
-int			algo_naif(t_game *partie)
+int			algo_naif(t_game *match)
 {
 	int				i;
 	int				j;
 	t_coos			curr_play;
 
 	init_algo(&curr_play, &i, &j);
-	curr_play.rel_dist = partie->h + partie->l;
-	find_last_play(partie);
-	while (i < partie->h)
+	curr_play.rel_dist = match->h + match->l;
+	find_last_play(match);
+	while (i < match->h)
 	{
 		j = 0;
-		while (j < partie->h)
+		while (j < match->h)
 		{
-			calc_rel_dist(partie, &curr_play, i, j);
+			calc_rel_dist(match, &curr_play, i, j);
 			j++;
 		}
 		i++;
