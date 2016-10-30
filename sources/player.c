@@ -13,10 +13,10 @@
 #include "filler.h"
 #include "../libft/libft.h"
 
-static void	init_algo(t_coos *curr_play, int *i, int *j)
+static void	init_algo(t_game *match, t_coos *curr_play, int *i, int *j)
 {
-	*i = 0;
-	*j = 0;
+	*i = (match->piece.h) * (-1) + 1;
+	*j = (match->piece.l) * (-1) + 1;
 	curr_play->x = -1;
 	curr_play->y = -1;
 }
@@ -81,12 +81,12 @@ int			algo_naif(t_game *match)
 	int				j;
 	t_coos			curr_play;
 
-	init_algo(&curr_play, &i, &j);
+	init_algo(match, &curr_play, &i, &j);
 	curr_play.rel_dist = match->h + match->l;
 	find_last_play(match);
 	while (i < match->h)
 	{
-		j = 0;
+		j = (match->piece.l) * (-1) + 1;
 		while (j < match->h)
 		{
 			calc_rel_dist(match, &curr_play, i, j);

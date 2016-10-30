@@ -1,5 +1,6 @@
-seed = 3450
+seed = 2306
 O: error on input
-../rorousse.filler won
+../rorousse.filler: Segfault at 0
+players/carli.filler won
 Score:
-198AGAINST147
+0AGAINST328

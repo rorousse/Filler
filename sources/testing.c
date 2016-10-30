@@ -12,6 +12,9 @@
 
 #include <fcntl.h>
 #include <unistd.h>
+#include <stdio.h>
+#include "../libft/libft.h"
+#include "filler.h"
 
 void	write_test(char *str)
 {

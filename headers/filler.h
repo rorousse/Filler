@@ -83,6 +83,6 @@ int		algo_naif(t_game *match);
 */
 
 void	write_test(char *str);
-void	write_plateau(char **plateau);
+void	write_board(char **plateau);
 
 #endif
