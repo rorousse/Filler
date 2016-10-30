@@ -41,10 +41,10 @@ static void	find_last_play(t_game *partie)
 	static int	b = 0;
 
 	i = 0;
-	while (i < partie->hauteur)
+	while (i < partie->h)
 	{
 		j = 0;
-		while (j < partie->largeur)
+		while (j < partie->l)
 		{
 			if (partie->plateau[i][j] == partie->adv
 			|| (b == 0 && partie->plateau[i][j] == partie->adv - 32))
@@ -68,12 +68,12 @@ int			algo_naif(t_game *partie)
 	unsigned int	dist_rel;
 
 	init_algo(&curr_play, &i, &j);
-	dist_rel = partie->hauteur + partie->largeur;
+	dist_rel = partie->h + partie->l;
 	find_last_play(partie);
-	while (i < partie->hauteur)
+	while (i < partie->h)
 	{
 		j = 0;
-		while (j < partie->hauteur)
+		while (j < partie->h)
 		{
 			if (check_pose(*partie, i, j))
 			{
@@ -91,5 +91,5 @@ int			algo_naif(t_game *partie)
 		i++;
 	}
 	print_answer(curr_play);
-	return (curr_play.x == -1) ?  0 : 1;
+	return (curr_play.x == -1) ? 0 : 1;
 }

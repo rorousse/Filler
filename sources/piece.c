@@ -22,15 +22,15 @@ void	read_piece(t_game *partie)
 	i = 6;
 	get_next_line(0, &line);
 	free(line);
-	(partie->piece).hauteur = ft_atoi(&(line[i]));
+	(partie->piece).h = ft_atoi(&(line[i]));
 	while (line[i] >= '0' && line[i] <= '9')
 		i++;
 	i++;
-	(partie->piece).largeur = ft_atoi(&(line[i]));
+	(partie->piece).l = ft_atoi(&(line[i]));
 	(partie->piece).forme = (char**)malloc(sizeof(char*)
-	* ((partie->piece).hauteur + 1));
+	* ((partie->piece).h + 1));
 	i = 0;
-	while (i < (partie->piece).hauteur)
+	while (i < (partie->piece).h)
 	{
 		get_next_line(0, &((partie->piece).forme[i]));
 		i++;
@@ -46,14 +46,14 @@ int		check_pose(t_game partie, int y, int x)
 
 	i = -1;
 	count = 0;
-	while (++i < partie.piece.hauteur)
+	while (++i < partie.piece.h)
 	{
 		j = 0;
-		while (j < partie.piece.largeur)
+		while (j < partie.piece.l)
 		{
 			if (partie.piece.forme[i][j] != '.')
 			{
-				if (y + i >= partie.hauteur || x + j >= partie.largeur
+				if (y + i >= partie.h || x + j >= partie.l
 				|| partie.plateau[y + i][x + j] == partie.adv
 				|| partie.plateau[y + i][x + j] == partie.adv - 32)
 					return (0);

@@ -14,7 +14,37 @@
 #include "filler.h"
 #include "../libft/libft.h"
 
-char	**init_plateau(int x, int y)
+static void	free_line(char *line)
+{
+	if (line != NULL)
+		free(line);
+}
+
+static void	read_board(t_game *partie, int dec, char *line)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < partie->h)
+	{
+		j = 0;
+		while (line[j + dec])
+		{
+			partie->plateau[i][j] = line[j + dec];
+			j++;
+		}
+		i++;
+		if (i != partie->h - 1)
+		{
+			free_line(line);
+			get_next_line(0, &line);
+		}
+	}
+	free_line(line);
+}
+
+char		**init_plateau(int x, int y)
 {
 	char	**plateau;
 	int		i;
@@ -43,7 +73,7 @@ char	**init_plateau(int x, int y)
 	return (plateau);
 }
 
-void	init_size(t_game *partie)
+void		init_size(t_game *partie)
 {
 	int		i;
 	char	*line;
@@ -52,24 +82,20 @@ void	init_size(t_game *partie)
 	get_next_line(0, &line);
 	while (line[i] && (line[i] < '0' || line[i] > '9'))
 		i++;
-	partie->hauteur = ft_atoi(&(line[i]));
+	partie->h = ft_atoi(&(line[i]));
 	while (line[i] != ' ')
 		i++;
-	partie->largeur = ft_atoi(&(line[i]));
-	partie->plateau = init_plateau(partie->largeur, partie->hauteur);
+	partie->l = ft_atoi(&(line[i]));
+	partie->plateau = init_plateau(partie->l, partie->h);
 	free(line);
 }
 
-void	lecture_plateau(t_game *partie)
+void		read_game(t_game *partie)
 {
 	char	*line;
 	int		dec;
-	int		i;
-	int		j;
 	int		ret;
 
-	j = 0;
-	i = 0;
 	dec = 0;
 	if (partie->plateau != NULL)
 	{
@@ -79,28 +105,10 @@ void	lecture_plateau(t_game *partie)
 	else
 		init_size(partie);
 	ret = get_next_line(0, &line);
-	if (line != NULL)
-		free(line);
+	free_line(line);
 	ret = get_next_line(0, &line);
 	while (line[dec] != ' ')
 		dec++;
 	dec++;
-	while (i < partie->hauteur)
-	{
-		j = 0;
-		while (line[j + dec])
-		{
-			partie->plateau[i][j] = line[j + dec];
-			j++;
-		}
-		i++;
-		if (i != partie->hauteur - 1)
-		{
-			if (line != NULL)
-				free(line);
-			ret = get_next_line(0, &line);
-		}
-	}
-	if (line != NULL)
-		free(line);
+	read_board(partie, dec, line);
 }

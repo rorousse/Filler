@@ -24,16 +24,16 @@ typedef struct s_coos t_coos;
 struct	s_piece
 {
 	char	**forme;
-	int		hauteur;
-	int		largeur;
+	int		h;
+	int		l;
 };
 
 typedef struct s_piece t_piece;
 
 struct	s_game
 {
-	int		largeur;
-	int		hauteur;
+	int		l;
+	int		h;
 	char	player;
 	char	adv;
 	t_coos	last_adv;
@@ -70,7 +70,7 @@ int		check_pose(t_game partie, int x, int y);
 
 char	**init_plateau(int x, int y);
 void	init_size(t_game *partie);
-void	lecture_plateau(t_game *partie);
+void	read_game(t_game *partie);
 
 /*
 **	PLAYER_C

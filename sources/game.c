@@ -21,7 +21,7 @@ void	play_game(void)
 	ret = 1;
 	while (ret == 1)
 	{
-		lecture_plateau(&partie);
+		read_game(&partie);
 		read_piece(&partie);
 		ret = algo_naif(&partie);
 		free_tab(partie.piece.forme);
