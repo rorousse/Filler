@@ -38,15 +38,13 @@ static void	calc_rel_dist(t_game *match, t_coos *curr_play, int i, int j)
 
 static int	print_answer(t_coos curr_play)
 {
-	if (curr_play.x != -1)
-	{
-		ft_putnbr(curr_play.y);
-		ft_putchar(' ');
-		ft_putnbr(curr_play.x);
-		ft_putchar('\n');
-		return (1);
-	}
-	return (0);
+	ft_putnbr(curr_play.y);
+	ft_putnbr_fd(curr_play.y, 2);
+	ft_putchar(' ');
+	ft_putnbr(curr_play.x);
+	ft_putnbr_fd(curr_play.x, 2);
+	ft_putchar('\n');
+	return (curr_play.x == -1) ? 0 : 1;
 }
 
 static void	find_last_play(t_game *match)

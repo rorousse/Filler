@@ -67,23 +67,21 @@ int		check_pose(t_game match, int y, int x)
 	int	j;
 	int	count;
 
-	i = -1;
+	i = 0;
 	count = 0;
 	if (!check_out(match, y, x))
 		return (0);
-	write(2, "go\n", 3);
-	while (++i < match.piece.h)
+	while (i < match.piece.h)
 	{
 		j = 0;
 		while (j < match.piece.l)
 		{
-			if (match.piece.shape[i][j] == '*')
+			if (match.piece.shape[i][j] == '*' && (y + i >= 0) && (x + j >= 0))
 			{
 				if (y + i >= match.h || x + j >= match.l
 				|| match.board[y + i][x + j] == match.adv
 				|| match.board[y + i][x + j] == match.adv - 32)
 				{
-					write(2, "ou\n", 3);
 					return (0);
 				}
 				if (match.board[y + i][x + j] == match.player
@@ -92,7 +90,7 @@ int		check_pose(t_game match, int y, int x)
 			}
 			j++;
 		}
+		i++;
 	}
-	write(2, "ou\n", 3);
 	return (count == 1) ? 1 : 0;
 }
