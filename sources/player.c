@@ -15,10 +15,11 @@
 
 static void	init_algo(t_game *match, t_coos *curr_play, int *i, int *j)
 {
-	*i = (match->piece.h) * (-1) + 1;
-	*j = (match->piece.l) * (-1) + 1;
-	curr_play->x = -1;
-	curr_play->y = -1;
+	*i = (match->piece.h) * (-1);
+	*j = (match->piece.l) * (-1);
+	curr_play->x = *j;
+	curr_play->y = *i;
+	curr_play->change = 0;
 }
 
 static void	calc_rel_dist(t_game *match, t_coos *curr_play, int i, int j)
@@ -32,19 +33,17 @@ static void	calc_rel_dist(t_game *match, t_coos *curr_play, int i, int j)
 			+ ft_abs(j - match->last_adv.x)) / 2;
 			curr_play->x = j;
 			curr_play->y = i;
+			curr_play->change = 1;
 		}
 	}
 }
 
-static int	print_answer(t_coos curr_play)
+static void	print_answer(t_coos curr_play)
 {
 	ft_putnbr(curr_play.y);
-	ft_putnbr_fd(curr_play.y, 2);
 	ft_putchar(' ');
 	ft_putnbr(curr_play.x);
-	ft_putnbr_fd(curr_play.x, 2);
 	ft_putchar('\n');
-	return (curr_play.x == -1) ? 0 : 1;
 }
 
 static void	find_last_play(t_game *match)
@@ -92,6 +91,7 @@ int			algo_naif(t_game *match)
 		}
 		i++;
 	}
+	write_board(match->board);
 	print_answer(curr_play);
-	return (curr_play.x == -1) ? 0 : 1;
+	return (curr_play.change);
 }

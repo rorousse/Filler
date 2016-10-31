@@ -27,9 +27,6 @@ void	play_game(void)
 		read_game(&match);
 		read_piece(&match);
 		ret = algo_naif(&match);
-		write(2, "\n", 1);
-		ft_putnbr_fd(ret, 2);
-		write(2, "\n", 1);
 		free_tab(match.piece.shape);
 	}
 	free_tab(match.board);

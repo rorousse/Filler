@@ -18,6 +18,7 @@ struct s_coos
 	int 			x;
 	int 			y;
 	unsigned int	rel_dist;
+	int				change;
 };
 
 typedef struct s_coos t_coos;
