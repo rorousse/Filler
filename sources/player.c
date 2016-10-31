@@ -27,10 +27,10 @@ static void	calc_rel_dist(t_game *match, t_coos *curr_play, int i, int j)
 	if (check_pose(*match, i, j))
 	{
 		if (((ft_abs(i - match->last_adv.y)
-		+ ft_abs(j - match->last_adv.x)) / 2) < curr_play->rel_dist)
+		+ ft_abs(j - match->last_adv.x))) < curr_play->rel_dist)
 		{
 			curr_play->rel_dist = (ft_abs(i - match->last_adv.y)
-			+ ft_abs(j - match->last_adv.x)) / 2;
+			+ ft_abs(j - match->last_adv.x));
 			curr_play->x = j;
 			curr_play->y = i;
 			curr_play->change = 1;
@@ -83,7 +83,7 @@ int			algo_naif(t_game *match)
 	find_last_play(match);
 	while (i < match->h)
 	{
-		j = (match->piece.l) * (-1) + 1;
+		j = (match->piece.l) * (-1);
 		while (j < match->h)
 		{
 			calc_rel_dist(match, &curr_play, i, j);
@@ -91,7 +91,7 @@ int			algo_naif(t_game *match)
 		}
 		i++;
 	}
-	write_board(match->board);
 	print_answer(curr_play);
+	write_board(match->piece.shape);
 	return (curr_play.change);
 }

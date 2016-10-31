@@ -26,7 +26,7 @@ static void	read_board(t_game *match, int dec, char *line)
 	int		j;
 
 	i = 0;
-	while (i < match->h)
+	while (i < match->h )
 	{
 		j = 0;
 		while (line[j + dec])
@@ -34,12 +34,12 @@ static void	read_board(t_game *match, int dec, char *line)
 			match->board[i][j] = line[j + dec];
 			j++;
 		}
-		i++;
-		if (i != match->h - 1)
+		if (i != match->h -1)
 		{
 			free_line(line);
 			get_next_line(0, &line);
 		}
+		i++;
 	}
 	free_line(line);
 }
