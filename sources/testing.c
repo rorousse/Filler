@@ -32,7 +32,7 @@ void	write_board(char **board)
 
 	i = 0;
 	fd = open("board.txt", O_RDWR | O_APPEND | O_CREAT);
-	ft_putendl_fd("Board :\n", fd);
+	ft_putendl_fd("Board :", fd);
 	while (board[i] != NULL)
 	{
 		ft_putendl_fd(board[i], fd);

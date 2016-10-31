@@ -21,17 +21,20 @@ static int	check_out(t_game match, int y, int x)
 	int	j;
 
 	i = 0;
+	write_board(match.piece.shape);
 	while (i < match.piece.h)
 	{
 		j = 0;
 		while (j < match.piece.l)
 		{
-			if (match.piece.shape[i][j] == '*' && (x +j < 0 || y + i < 0))
+			write(2,&(match.piece.shape[i][j]),1);
+			if (match.piece.shape[i][j] == '*' && ((x + j < 0) || (y + i < 0)))
 			{
 				return (0);
 			}
 			j++;
 		}
+		write(2, "\n", 1);
 		i++;
 	}
 	return (1);
@@ -44,7 +47,6 @@ void	read_piece(t_game *match)
 
 	i = 6;
 	get_next_line(0, &line);
-	free(line);
 	(match->piece).h = ft_atoi(&(line[i]));
 	while (line[i] >= '0' && line[i] <= '9')
 		i++;
