@@ -27,14 +27,12 @@ static int	check_out(t_game match, int y, int x)
 		j = 0;
 		while (j < match.piece.l)
 		{
-			write(2,&(match.piece.shape[i][j]),1);
 			if (match.piece.shape[i][j] == '*' && ((x + j < 0) || (y + i < 0)))
 			{
 				return (0);
 			}
 			j++;
 		}
-		write(2, "\n", 1);
 		i++;
 	}
 	return (1);
@@ -96,13 +94,7 @@ int		check_pose(t_game match, int y, int x)
 	}
 	if (count == 1)
 	{
-		/*
-		ft_putstr_fd("check_pos : ", 2);
-		ft_putnbr_fd(y, 2);
-		ft_putstr_fd(" ",2);
-		ft_putnbr_fd(x,2);
-		ft_putstr_fd("\n",2);
-		*/
+		ft_putendl_fd("congratz", 2);
 		return (1);
 	}
 	return (0);
