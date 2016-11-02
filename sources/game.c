@@ -12,7 +12,6 @@
 
 #include "filler.h"
 
-
 #include "../libft/libft.h"
 
 void	play_game(void)

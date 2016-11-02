@@ -14,14 +14,24 @@
 #include "filler.h"
 #include "../libft/libft.h"
 
-// secure
+static int	ft_matching(t_game match, int *count, int x, int y)
+{
+	if (y >= match.h || x >= match.l
+	|| match.board[y][x] == match.adv
+	|| match.board[y][x] == match.adv - 32)
+		return (0);
+	if (match.board[y][x] == match.player
+	|| match.board[y][x] == match.player - 32)
+		(*count)++;
+	return (1);
+}
+
 static int	check_out(t_game match, int y, int x)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	write_board(match.piece.shape);
 	while (i < match.piece.h)
 	{
 		j = 0;
@@ -38,7 +48,7 @@ static int	check_out(t_game match, int y, int x)
 	return (1);
 }
 
-void	read_piece(t_game *match)
+void		read_piece(t_game *match)
 {
 	char	*line;
 	int		i;
@@ -61,7 +71,7 @@ void	read_piece(t_game *match)
 	(match->piece).shape[i] = NULL;
 }
 
-int		check_pose(t_game match, int y, int x)
+int			check_pose(t_game match, int y, int x)
 {
 	int	i;
 	int	j;
@@ -77,26 +87,11 @@ int		check_pose(t_game match, int y, int x)
 		while (j < match.piece.l)
 		{
 			if (match.piece.shape[i][j] == '*' && (y + i >= 0) && (x + j >= 0))
-			{
-				if (y + i >= match.h || x + j >= match.l
-				|| match.board[y + i][x + j] == match.adv
-				|| match.board[y + i][x + j] == match.adv - 32)
-				{
+				if (!ft_matching(match, &count, x + j, y + i))
 					return (0);
-				}
-				if (match.board[y + i][x + j] == match.player
-				|| match.board[y + i][x + j] == match.player - 32)
-				{
-					count++;
-				}
-			}
 			j++;
 		}
 		i++;
 	}
-	if (count == 1)
-	{
-		return (1);
-	}
-	return (0);
+	return (count == 1) ? 1 : 0;
 }
