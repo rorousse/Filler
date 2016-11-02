@@ -84,7 +84,7 @@ int			algo_naif(t_game *match)
 	while (i < match->h)
 	{
 		j = (match->piece.l) * (-1);
-		while (j < match->h)
+		while (j < match->l)
 		{
 			calc_rel_dist(match, &curr_play, i, j);
 			j++;
@@ -92,6 +92,5 @@ int			algo_naif(t_game *match)
 		i++;
 	}
 	print_answer(curr_play);
-	write_board(match->piece.shape);
 	return (curr_play.change);
 }

@@ -86,7 +86,9 @@ int		check_pose(t_game match, int y, int x)
 				}
 				if (match.board[y + i][x + j] == match.player
 				|| match.board[y + i][x + j] == match.player - 32)
+				{
 					count++;
+				}
 			}
 			j++;
 		}
@@ -94,7 +96,6 @@ int		check_pose(t_game match, int y, int x)
 	}
 	if (count == 1)
 	{
-		ft_putendl_fd("congratz", 2);
 		return (1);
 	}
 	return (0);
