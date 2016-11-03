@@ -20,7 +20,6 @@ SRC = 	main.c		\
 		piece.c		\
 		game.c		\
 		player.c	\
-		testing.c	\
 
 LIBS = libft/libft.a
 OBJNAME= $(SRC:.c=.o)

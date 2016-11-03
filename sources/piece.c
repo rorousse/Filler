@@ -63,6 +63,7 @@ void		read_piece(t_game *match)
 	(match->piece).shape = (char**)malloc(sizeof(char*)
 	* ((match->piece).h + 1));
 	i = 0;
+	free(line);
 	while (i < (match->piece).h)
 	{
 		get_next_line(0, &((match->piece).shape[i]));
