@@ -3,8 +3,9 @@
 echo $1
 for str in 'players/abanlin.filler' 'players/carli.filler' 'players/grati.filler' 'players/hcao.filler' 'players/superjeannot.filler' 
 	do let "count = 0"
+		echo "$str :"
 		for n in `seq 1 5`
-		do ./filler_vm -f $1 -p1 ../rorousse.filler -p2 $str > lol
+		do ./filler_vm -f $1 -p2 ../rorousse.filler -p1 $str > lol
 		line=`sed -n 2p filler.trace`
 		echo "$line"
 		if [ "$line" = "../rorousse.filler won" ];
